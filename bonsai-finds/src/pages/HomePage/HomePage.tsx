@@ -1,25 +1,17 @@
 import { useEffect, useState } from "react";
 import { getBonsaiPhotos } from "../../lib/hygraph";
-
-type BonsaiPhoto = {
-  id: string;
-  title: string;
-  description: string;
-  image: { url: string };
-  country: string;
-  takenAt: string;
-  tags: string[];
-};
+import { BonsaiPhoto } from "../../lib/types";
 
 const BonsaiGallery = () => {
   const [photos, setPhotos] = useState<BonsaiPhoto[]>([]);
 
   useEffect(() => {
-    getBonsaiPhotos().then((data) => setPhotos(data.bonsaiPhotos));
+    getBonsaiPhotos().then((data) => setPhotos(data));
   }, []);
 
   return (
     <div className="grid grid-cols-3 gap-4">
+      Home Page
       {photos.map((photo) => (
         <div key={photo.id} className="border p-4 rounded shadow-md">
           <img
